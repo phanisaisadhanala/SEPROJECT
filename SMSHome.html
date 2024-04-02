@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+    }
+    nav {
+        background-color: #666;
+        padding: 10px;
+        text-align: center;
+    }
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+    nav ul li {
+        display: inline;
+        margin-right: 10px;
+    }
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+    }
+    section {
+        padding: 20px;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <h1> Software Personal Management System</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#" id="home">Home</a></li>
+            <li><a href="file:///C:/Desktop/BWD/SMSDetails.html" id="details">Details</a></li>
+            <li><a href="#" id="search">Search</a></li>
+            <li><a href="file:///C:/Desktop/BWD/SMSLogin.html" id="login">Login</a></li>
+        </ul>
+    </nav>
+    <section id="content">
+        <div style="display: flex;">
+            <img src="C:\Users\mahit\Downloads\tata1.avif" width="1500" height="540">
+        </div>
+    </section>
+
+    <script>
+        // JavaScript code to handle navigation
+        const content = document.getElementById('content');
+        const homeLink = document.getElementById('home');
+        const tasksLink = document.getElementById('tasks');
+        const appointmentsLink = document.getElementById('appointments');
+        const contactsLink = document.getElementById('contacts');
+
+        homeLink.addEventListener('click', () => loadContent('Home'));
+        tasksLink.addEventListener('click', () => loadContent('Tasks'));
+        appointmentsLink.addEventListener('click', () => loadContent('Appointments'));
+        contactsLink.addEventListener('click', () => loadContent('Contacts'));
+
+        function loadContent(page) {
+            // Simulate loading content from server
+            content.innerHTML = <h2>${page}</h2><p>This is the ${page} page content.</p>;
+        }
+        
+        // Initially load home page
+        loadContent('Home');
+    </script>
+</body>
+</html>

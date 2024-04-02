@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personnel Management System</title>
+<style>
+    /* Basic CSS for styling */
+    body {
+        font-family: Arial, sans-serif;
+    
+    }
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    .button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Personnel Management System</h2>
+    <div>
+        <table>
+        <tr>
+        <td><label for="emp_id">Employee ID:</label></td>
+        <td><input type="text" id="emp_id"><br></td>
+        </tr>
+        <tr>
+        <td><label for="name">Name:</label></td>
+        <td><input type="text" id="name"><br></td>
+        </tr>
+        <tr>
+        <td><label for="name">Contact:</label></td>
+        <td><input type="text" id="contact"><br></td>
+        </tr>
+        <tr>
+        <td><label for="position">Position:</label></td>
+        <td><input type="text" id="position"><br></td>
+        </tr>
+        <tr>
+        <td><label for="salary">Salary:</label></td>
+        <td><input type="text" id="salary"><br></td>
+        </tr>
+        </table>
+        <center><button class="button" onclick="addEmployee()">Add Employee</button></center>
+    </div>
+    <br>
+    <table id="employeeTable">
+        <tr>
+            <th>Employee ID</th>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Salary</th>
+            <th>Action</th>
+        </tr>
+    </table>
+</div>
+
+<script>
+    // JavaScript code for interacting with the backend
+    // This is a simplified example, you would need AJAX or similar for real-world applications
+
+    // Sample data for testing
+    let employees = [
+        { emp_id: 1, name: "John Doe", position: "Software Engineer", salary: 50000 },
+        { emp_id: 2, name: "Jane Smith", position: "Project Manager", salary: 60000 }
+    ];
+
+    function renderEmployees() {
+        const table = document.getElementById("employeeTable");
+        table.innerHTML = "<tr><th>Employee ID</th><th>Name</th><th>Position</th><th>Salary</th><th>Action</th></tr>";
+        employees.forEach(employee => {
+            const row = `<tr>
+                            <td>${employee.emp_id}</td>
+                            <td>${employee.name}</td>
+                            <td>${employee.position}</td>
+                            <td>${employee.salary}</td>
+                            <td><button class="button" onclick="deleteEmployee(${employee.emp_id})">Delete</button></td>
+                        </tr>`;
+            table.innerHTML += row;
+        });
+    }
+
+    function addEmployee() {
+        const emp_id = document.getElementById("emp_id").value;
+        const name = document.getElementById("name").value;
+        const position = document.getElementById("position").value;
+        const salary = document.getElementById("salary").value;
+        employees.push({ emp_id: parseInt(emp_id), name: name, position: position, salary: parseInt(salary) });
+        renderEmployees();
+    }
+
+    function deleteEmployee(emp_id) {
+        employees = employees.filter(employee => employee.emp_id !== emp_id);
+        renderEmployees();
+    }
+
+    // Initial rendering
+    renderEmployees();
+</script>
+</body>
+</html>

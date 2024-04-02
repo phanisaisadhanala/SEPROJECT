@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search - Software Management System</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+	display: flex;
+        justify-content: center;
+        align-items: center;
+	height: 100vh;
+    }
+    .container {
+        width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	
+    }
+.container h2{
+text-align:center;
+}
+    input[type="text"] {
+        width: calc(100% - 22px);
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    ul {
+        list-style: none;
+        margin: 0;
+    }
+    li {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+    .highlight {
+        background-color: #e0f7fa; /* Light blue */
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Search Employees</h2>
+    <input type="text" id="searchInput" placeholder="Enter search term...">
+    <ul id="searchResults"></ul>
+</div>
+
+<script>
+    const employees = [
+        { id: 1, name: "John Doe", contact: "1234567890", position: "Software Engineer", salary: "50000" },
+        { id: 2, name: "Jane Smith", contact: "9876543210", position: "Project Manager", salary: "60000" },
+        { id: 3, name: "Michael Johnson", contact: "5551234567", position: "HR Specialist", salary: "45000" },
+        { id: 4, name: "Emily Brown", contact: "7778889990", position: "Financial Analyst", salary: "55000" }
+    ];
+
+    function searchEmployees() {
+        const searchInput = document.getElementById("searchInput").value.trim().toLowerCase();
+        const searchResults = employees.filter(employee =>
+            employee.name.toLowerCase().includes(searchInput) ||
+            employee.id.toString().includes(searchInput) ||
+            employee.contact.includes(searchInput) ||
+            employee.position.toLowerCase().includes(searchInput) ||
+            employee.salary.includes(searchInput)
+        );
+        displaySearchResults(searchResults);
+    }
+
+    function displaySearchResults(results) {
+        const searchResultsList = document.getElementById("searchResults");
+        searchResultsList.innerHTML = "";
+        if (results.length > 0) {
+            results.forEach(employee => {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = <strong>ID:</strong> ${employee.id}, <strong>Name:</strong> ${employee.name}, <strong>Contact:</strong> ${employee.contact}, <strong>Position:</strong> ${employee.position}, <strong>Salary:</strong> ${employee.salary};
+                searchResultsList.appendChild(listItem);
+            });
+        } else {
+            const listItem = document.createElement("li");
+            listItem.textContent = "No matching results found.";
+            searchResultsList.appendChild(listItem);
+        }
+    }
+
+    document.getElementById("searchInput").addEventListener("input", searchEmployees);
+</script>
+</body>
+</html>
